@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>tests</groupId>
+  <artifactId>dokka-maven</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <kotlin.version>1.2.21</kotlin.version>
+    <dokka.version>0.9.19-SNAPSHOT</dokka.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>${kotlin.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+
+    <plugins>
+      <plugin>
+        <groupId>org.jetbrains.dokka</groupId>
+        <artifactId>dokka-maven-plugin</artifactId>
+        <version>${dokka.version}</version>
+        <executions>
+          <execution>
+            <phase>pre-site</phase>
+            <goals>
+              <goal>dokka</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <reportUndocumented>false</reportUndocumented>
+          <jdkVersion>8</jdkVersion>
+          <sourceLinks>
+            <link>
+              <path>${project.basedir}</path>
+              <url>https://github.com/JetBrains/kotlin-examples/blob/master/maven/dokka-maven-example</url>
+              <lineSuffix>#L</lineSuffix>
+            </link>
+          </sourceLinks>
+        </configuration>
+
+      </plugin>
+
+    </plugins>
+  </build>
+</project>
